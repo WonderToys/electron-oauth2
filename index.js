@@ -44,6 +44,8 @@ module.exports = function (config, windowParams) {
 
       function onCallback(url) {
         var url_parts = nodeUrl.parse(url, true);
+        if ( url_parts.host !== nodeUrl.parse(config.redirectUri).host ) return;
+        
         var query = url_parts.query;
         var code = query.code;
         var error = query.error;

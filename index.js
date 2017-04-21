@@ -65,6 +65,10 @@ module.exports = function (config, windowParams) {
         }
       }
 
+      authWindow.webContents.on('did-finish-load', (event, url) => {
+        authWindow.webContents.insertCSS('body { overflow: hidden; }')
+      });
+
       authWindow.webContents.on('will-navigate', (event, url) => {
         onCallback(url);
       });
